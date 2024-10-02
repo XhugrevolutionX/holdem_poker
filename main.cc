@@ -2,6 +2,9 @@
 
 
 #include "card.h"
+#include "deck.h"
+#include "player.h"
+#include "table.h"
 
 
 int main()
