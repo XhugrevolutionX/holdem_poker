@@ -41,7 +41,6 @@ public:
 		card5_.Display();
 		std::cout << '\n';
 	}
-
 };
 
 #endif // TABLE_H

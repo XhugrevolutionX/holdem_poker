@@ -34,6 +34,7 @@ private:
 	Suits suit_;
 	Value value_;
 public:
+
 	Card() = default;
 
 	Card(Suits s, Value v) : suit_(s), value_(v)

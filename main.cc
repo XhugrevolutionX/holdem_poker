@@ -10,7 +10,7 @@
 int main()
 {
 
-	//Player player1;
+	//Player player0;
 
 	Card c1(Suits::kClubs, Value::kTwo);
 	Card c2(Suits::kSpades, Value::kTen);
@@ -43,14 +43,14 @@ int main()
 
 	Deck deck;
 
-	//deck.fill();
-	//deck.DisplayDeck();
+	deck.fill();
+	deck.DisplayDeck();
 
-	//deck.shuffle();
-	//deck.DisplayDeck();
+	deck.shuffle();
+	deck.DisplayDeck();
 
-	//deck.Clear();
-	//deck.DisplayDeck();
+	deck.Clear();
+	deck.DisplayDeck();
 
 
 

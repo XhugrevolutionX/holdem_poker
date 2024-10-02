@@ -20,12 +20,6 @@ public:
 		card2_.Display();
 		std::cout << '\n';
 	}
-
-	//void TakeCards(Card new_card1, Card new_card2)
-	//{
-	//	card1_ = new_card1;
-	//	card2_ = new_card2;
-	//}
 };
 
 #endif // PLAYER_H

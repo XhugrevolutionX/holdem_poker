@@ -6,6 +6,7 @@ class Deck
 private:
 	std::vector<Card> deck;
 public:
+
 	Deck() = default;
 
 	void DisplayDeck()
@@ -57,21 +58,6 @@ public:
 			deck.pop_back();
 		}
 	}
-
-	Card PickACard()
-	{
-		Card card;
-		card.Random();
-
-		auto it = std::find(deck.begin(), deck.end(), card);
-
-		// If element is found found, erase it
-		if (it != deck.end()) {
-			deck.erase(it);
-		}
-		return card;
-	}
-
 };
 
 
