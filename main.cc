@@ -1,8 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <random>
-#include "card.h"
 #include "deck.h"
+#include "card.h"
 #include "player.h"
 #include "table.h"
 

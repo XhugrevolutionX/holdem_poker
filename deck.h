@@ -1,6 +1,8 @@
 #ifndef DECK_H
 #define DECK_H
 
+#include "card.h"
+
 class Deck
 {
 private:
@@ -31,24 +33,8 @@ public:
 
 	}
 
-	Card PickACard()
-	{
-		Card card;
-		bool card_is_in_deck = false;
-		do
-		{
-			card.Random();
+	Card PickACard();
 
-			auto it = std::find(deck.begin(), deck.end(), card);
-
-			// If element is found found, erase it
-			if (it != deck.end()) {
-				card_is_in_deck = true;
-				deck.erase(it);
-				return card;
-			}
-		} while (!card_is_in_deck);
-	}
 
 	void Fill()
 	{

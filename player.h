@@ -8,7 +8,7 @@ private:
 	Card card2_;
 public:
 
-	//Player();
+	Player() = default;
 
 	Player(Card c1, Card c2) : card1_(c1), card2_(c2)
 	{

@@ -18,6 +18,12 @@
     <ClCompile Include="main.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="card.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="deck.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deck.h">
