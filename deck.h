@@ -20,5 +20,7 @@ public:
 	void Shuffle();
 
 	void Clear();
+
+	void Burn();
 };
 #endif // DECK_H

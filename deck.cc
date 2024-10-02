@@ -23,6 +23,7 @@ Card Deck::PickACard()
 
 void Deck::DisplayDeck()
 {
+	std::cout << deck.size() << '\n';
 
 	if (deck.empty())
 	{
@@ -69,4 +70,9 @@ void Deck::Clear()
 	{
 		deck.pop_back();
 	}
+}
+
+void Deck::Burn()
+{
+	deck.pop_back();
 }

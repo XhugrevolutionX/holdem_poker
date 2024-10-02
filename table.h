@@ -2,6 +2,7 @@
 #define TABLE_H
 
 #include "card.h"
+#include "deck.h"
 
 class Table
 {
@@ -15,13 +16,11 @@ public:
 
 	Table() = default;
 
-	void Fill();
+	void Flop(Deck& deck_);
 
-	void Flop();
+	void Turn(Deck& deck_);
 
-	void Turn();
-
-	void River();
+	void River(Deck& deck_);
 };
 
 #endif // TABLE_H

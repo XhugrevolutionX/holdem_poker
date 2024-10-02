@@ -6,16 +6,18 @@
 class Player
 {
 private:
-	Card card1_;
-	Card card2_;
+	std::string name_;
+	std::vector<Card> cards_;
 public:
 
 	Player() = default;
 
-	Player(Card c1, Card c2) : card1_(c1), card2_(c2)
+	Player(std::string name) : name_(name)
 	{}
 
 	void Display_cards();
+	
+	void GetCard(Card c1, Card c2);
 };
 
 #endif // PLAYER_H
