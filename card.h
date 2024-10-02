@@ -40,6 +40,10 @@ public:
 	Card(Suits s, Value v) : suit_(s), value_(v)
 	{}
 
+	Suits GetSuit() { return suit_; }
+
+	Value GetValue() { return value_; }
+
 	void Display();
 
 	void Random();
