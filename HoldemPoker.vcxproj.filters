@@ -30,6 +30,9 @@
     <ClCompile Include="table.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="logic.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deck.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="logic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

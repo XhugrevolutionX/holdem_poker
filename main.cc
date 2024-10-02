@@ -5,6 +5,7 @@
 #include "card.h"
 #include "player.h"
 #include "table.h"
+#include "logic.h"
 
 
 int main()

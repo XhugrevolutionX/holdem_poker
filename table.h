@@ -7,14 +7,10 @@
 class Table
 {
 private:
-	Card card1_;
-	Card card2_;
-	Card card3_;
-	Card card4_;
-	Card card5_;
+	std::vector<Card> community_cards_;
 public:
 
-	Table() = default;
+	Table();
 
 	void Flop(Deck& deck_);
 
