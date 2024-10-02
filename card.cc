@@ -95,8 +95,11 @@ void Card::Random()
 	std::uniform_int_distribution<> Value_distr(2, 14); // define the range
 
 	for (int n = 0; n < 40; ++n)
+	{
 		suit_ = static_cast<Suits>(Suits_distr(gen)); // generate numbers
-	value_ = static_cast<Value>(Value_distr(gen)); // generate numbers
+		value_ = static_cast<Value>(Value_distr(gen)); // generate numbers
+	}
+
 }
 
 bool Card::operator==(const Card& other)
