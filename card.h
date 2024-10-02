@@ -124,9 +124,6 @@ public:
 
 	void Random()
 	{
-
-		int s;
-		int v;
 		std::random_device rd; // obtain a random number from hardware
 		std::mt19937 gen(rd()); // seed the generator
 		std::uniform_int_distribution<> Suits_distr(0, 3); // define the range

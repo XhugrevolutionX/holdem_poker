@@ -58,19 +58,19 @@ public:
 		}
 	}
 
-	//Card PickACard()
-	//{
-	//	Card card;
-	//	card.Random();
+	Card PickACard()
+	{
+		Card card;
+		card.Random();
 
-	//	auto it = std::find(deck.begin(), deck.end(), card);
+		auto it = std::find(deck.begin(), deck.end(), card);
 
-	//	// If element is found found, erase it
-	//	if (it != deck.end()) {
-	//		deck.erase(it);
-	//	}
-	//	return card;
-	//}
+		// If element is found found, erase it
+		if (it != deck.end()) {
+			deck.erase(it);
+		}
+		return card;
+	}
 
 };
 
