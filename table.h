@@ -1,6 +1,8 @@
 #ifndef TABLE_H
 #define TABLE_H
 
+#include "card.h"
+
 class Table
 {
 private:
@@ -13,34 +15,13 @@ public:
 
 	Table() = default;
 
-	void Fill()
-	{
-		card1_.Random();
-		card2_.Random();
-		card3_.Random();
-		card4_.Random();
-		card5_.Random();
-	}
+	void Fill();
 
-	void Flop()
-	{
-		card1_.Display();
-		card2_.Display();
-		card3_.Display();
-		std::cout << '\n';
-	}
+	void Flop();
 
-	void Turn()
-	{
-		card4_.Display();
-		std::cout << '\n';
-	}
+	void Turn();
 
-	void River()
-	{
-		card5_.Display();
-		std::cout << '\n';
-	}
+	void River();
 };
 
 #endif // TABLE_H

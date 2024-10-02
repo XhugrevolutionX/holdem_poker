@@ -42,3 +42,31 @@ void Deck::DisplayDeck()
 	}
 
 }
+
+void Deck::Fill()
+{
+
+	for (Suits s = Suits::kSpades; s <= Suits::kDiamonds; s = static_cast<Suits>(static_cast<int>(s) + 1))
+	{
+		for (Value v = Value::kTwo; v <= Value::kAce; v = static_cast<Value>(static_cast<int>(v) + 1))
+		{
+			deck.emplace_back(s, v);
+		}
+	}
+}
+
+void Deck::Shuffle()
+{
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	std::shuffle(deck.begin(), deck.end(), g);
+}
+
+void Deck::Clear()
+{
+	for (auto d : deck)
+	{
+		deck.pop_back();
+	}
+}

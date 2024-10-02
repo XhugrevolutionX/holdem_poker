@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
+#include "card.h"
+
 class Player
 {
 private:
@@ -11,15 +13,9 @@ public:
 	Player() = default;
 
 	Player(Card c1, Card c2) : card1_(c1), card2_(c2)
-	{
-	}
+	{}
 
-	void Display_cards()
-	{
-		card1_.Display();
-		card2_.Display();
-		std::cout << '\n';
-	}
+	void Display_cards();
 };
 
 #endif // PLAYER_H

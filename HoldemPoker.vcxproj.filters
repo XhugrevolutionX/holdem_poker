@@ -24,6 +24,12 @@
     <ClCompile Include="deck.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="player.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="table.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deck.h">

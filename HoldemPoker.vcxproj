@@ -131,6 +131,8 @@
     <ClCompile Include="card.cc" />
     <ClCompile Include="deck.cc" />
     <ClCompile Include="main.cc" />
+    <ClCompile Include="player.cc" />
+    <ClCompile Include="table.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h" />

@@ -1,6 +1,7 @@
 #include <iostream>
 #include "card.h"
 
+
 void Card::Display()
 {
 	std::string s;
