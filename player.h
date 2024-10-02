@@ -3,14 +3,12 @@
 
 class Player
 {
-
 private:
 	Card card1_;
 	Card card2_;
 public:
 
 	//Player();
-
 
 	Player(Card c1, Card c2) : card1_(c1), card2_(c2)
 	{

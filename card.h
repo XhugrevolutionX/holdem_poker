@@ -1,8 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include <vector>
-#include <random>
+
 
 enum class Suits
 {
@@ -31,7 +30,6 @@ enum class Value
 
 class Card
 {
-
 private:
 	Suits suit_;
 	Value value_;

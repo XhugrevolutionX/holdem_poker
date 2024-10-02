@@ -3,7 +3,6 @@
 
 class Deck
 {
-
 private:
 	std::vector<Card> deck;
 public:
