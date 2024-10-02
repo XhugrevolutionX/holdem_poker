@@ -12,7 +12,7 @@ int main()
 	Card c2(Suits::kSpades, Value::kTen);
 
 	Player player1(c1, c2);
-	player1.Display_cards();
+	//player1.Display_cards();
 
 
 
@@ -23,29 +23,40 @@ int main()
 	c4.Random();
 
 	Player player2(c3, c4);
-	player2.Display_cards();
+	//player2.Display_cards();
 
 
 
 	Card c5;
 
-	for(int i = 0; i < 20; i++)
-	{
-		c5.Random();
-		c5.Display();
-	}
-	std::cout << '\n';
+	//for(int i = 0; i < 20; i++)
+	//{
+	//	c5.Random();
+	//	c5.Display();
+	//}
+	//std::cout << '\n';
 
 
 
 	Deck deck;
 
-	deck.fill();
-	deck.DisplayDeck();
+	//deck.fill();
+	//deck.DisplayDeck();
 
-	deck.shuffle();
-	deck.DisplayDeck();
+	//deck.shuffle();
+	//deck.DisplayDeck();
 
-	deck.Clear();
-	deck.DisplayDeck();
+	//deck.Clear();
+	//deck.DisplayDeck();
+
+
+
+	Table table;
+
+	table.Fill();
+
+	table.Flop();
+	table.Turn();
+	table.River();
+
 }

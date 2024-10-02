@@ -198,6 +198,19 @@ public:
 		}
 	}
 
+	//Card PickACard()
+	//{
+	//	Card card;
+	//	card.Random();
+
+	//	auto it = std::find(deck.begin(), deck.end(), card);
+
+	//	// If element is found found, erase it
+	//	if (it != deck.end()) {
+	//		deck.erase(it);
+	//	}
+	//	return card;
+	//}
 
 };
 
@@ -242,14 +255,36 @@ private:
 	Card card5_;
 public:
 
+	Table() = default;
+
+	void Fill()
+	{
+		card1_.Random();
+		card2_.Random();
+		card3_.Random();
+		card4_.Random();
+		card5_.Random();
+	}
+
 	void Flop()
-	{}
+	{
+		card1_.Display();
+		card2_.Display();
+		card3_.Display();
+		std::cout << '\n';
+	}
 
 	void Turn()
-	{}
+	{
+		card4_.Display();
+		std::cout << '\n';
+	}
 
 	void River()
-	{}
+	{
+		card5_.Display();
+		std::cout << '\n';
+	}
 
 };
 
