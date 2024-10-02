@@ -31,7 +31,26 @@ public:
 
 	}
 
-	void fill()
+	Card PickACard()
+	{
+		Card card;
+		bool card_is_in_deck = false;
+		do
+		{
+			card.Random();
+
+			auto it = std::find(deck.begin(), deck.end(), card);
+
+			// If element is found found, erase it
+			if (it != deck.end()) {
+				card_is_in_deck = true;
+				deck.erase(it);
+				return card;
+			}
+		} while (!card_is_in_deck);
+	}
+
+	void Fill()
 	{
 
 		for (Suits s = Suits::kSpades; s <= Suits::kDiamonds; s = static_cast<Suits>(static_cast<int>(s) + 1))
@@ -43,7 +62,7 @@ public:
 		}
 	}
 
-	void shuffle()
+	void Shuffle()
 	{
 		std::random_device rd;
 		std::mt19937 g(rd());
@@ -59,6 +78,4 @@ public:
 		}
 	}
 };
-
-
 #endif // DECK_H

@@ -134,6 +134,11 @@ public:
 			suit_ = static_cast<Suits>(Suits_distr(gen)); // generate numbers
 			value_ = static_cast<Value>(Value_distr(gen)); // generate numbers
 	}
+
+	bool operator==(const Card& other)
+	{
+		return (this->suit_ == other.suit_ && this->value_ == other.value_);
+	}
 };
 
 #endif // CARD_H
