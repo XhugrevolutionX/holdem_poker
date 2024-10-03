@@ -10,7 +10,7 @@ void Player::Display_cards()
 	std::cout << '\n';
 }
 
-void Player::GetCard(Card c1, Card c2)
+void Player::SetCard(Card c1, Card c2)
 {
 	cards_.push_back(c1);
 	cards_.push_back(c2);

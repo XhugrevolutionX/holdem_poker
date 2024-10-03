@@ -17,7 +17,9 @@ public:
 
 	void Display_cards();
 	
-	void GetCard(Card c1, Card c2);
+	void SetCard(Card c1, Card c2);
+
+	std::vector<Card> GetCards() { return cards_; };
 };
 
 #endif // PLAYER_H

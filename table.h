@@ -17,6 +17,8 @@ public:
 	void Turn(Deck& deck_);
 
 	void River(Deck& deck_);
+
+	std::vector<Card> GetCommunityCards() { return community_cards_; }
 };
 
 #endif // TABLE_H
