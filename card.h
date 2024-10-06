@@ -5,7 +5,7 @@
 
 enum class Suits
 {
-	kSpades,
+	kSpades = 0,
 	kHearts,
 	kClubs,
 	kDiamonds,
@@ -27,6 +27,9 @@ enum class Value
 	kKing,
 	kAce,
 };
+
+
+
 
 class Card
 {

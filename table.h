@@ -19,6 +19,8 @@ public:
 	void River(Deck& deck_);
 
 	std::vector<Card> GetCommunityCards() { return community_cards_; }
+
+	void FillTable(Card C1, Card C2, Card C3, Card C4, Card C5);
 };
 
 #endif // TABLE_H

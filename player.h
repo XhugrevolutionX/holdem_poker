@@ -2,12 +2,14 @@
 #define PLAYER_H
 
 #include "card.h"
+#include "hands.h"
 
 class Player
 {
 private:
 	std::string name_;
 	std::vector<Card> cards_;
+	HandValue hand_;
 public:
 
 	Player() = default;
@@ -19,7 +21,17 @@ public:
 	
 	void SetCard(Card c1, Card c2);
 
-	std::vector<Card> GetCards() { return cards_; };
+	std::vector<Card> GetCards() { return cards_; }
+
+	HandValue GetHands() { return hand_; }
+
+	std::string GetName() { return name_; }
+
+	void SetHands(Hands hand, Value rank);
+
+	void SetHighCard();
+
+	void DisplayHand();
 };
 
 #endif // PLAYER_H

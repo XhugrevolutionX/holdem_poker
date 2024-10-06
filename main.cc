@@ -10,97 +10,54 @@
 
 int main()
 {
-	int win = 0;
+	//int win = 0;
 
-	std::cout << "Enter the first player's name :\n";
-	std::string Player1_name;
-	std::cin >> Player1_name;
+	//std::cout << "Enter the first player's name :\n";
+	//std::string Player1_name;
+	//std::cin >> Player1_name;
 
-	std::cout << "Enter the second player's name :\n";
-	std::string Player2_name;
-	std::cin >> Player2_name;
+	//std::cout << "Enter the second player's name :\n";
+	//std::string Player2_name;
+	//std::cin >> Player2_name;
 
 
 
-	Deck deck;
+	//Deck deck;
 
-	deck.Fill();
+	//deck.Fill();
 	//deck.DisplayDeck();
 
 
 
-	Card c1 = deck.PickACard();
-	Card c2 = deck.PickACard();
+	//Card c1 = deck.PickACard();
+	//Card c2 = deck.PickACard();
 
-	Player player1(Player1_name);
-	player1.SetCard(c1, c2);
+	//Player player1(Player1_name);
+	//player1.SetCard(c1, c2);
+	//player1.SetHighCard();
 	//player1.Display_cards();
 
 
 
-	Card c3 = deck.PickACard();
-	Card c4 = deck.PickACard();
+	//Card c3 = deck.PickACard();
+	//Card c4 = deck.PickACard();
 
-	Player player2(Player2_name);
-	player2.SetCard(c3, c4);
+	//Player player2(Player2_name);
+	//player2.SetCard(c3, c4);
+	//player2.SetHighCard();
 	//player2.Display_cards();
 
 	//deck.DisplayDeck();
 
 
 
-	Table table;
+	//Table table;
 
-	table.Flop(deck);
-	table.Turn(deck);
-	table.River(deck);
+	//table.Flop(deck);
+	//table.Turn(deck);
+	//table.River(deck);
 
 	//deck.DisplayDeck();
-
-	//---------------------------
-	//function verification
-	Card
-	C1(Suits::kHearts,Value::kFive),
-	C2(Suits::kHearts, Value::kThree),
-	C3(Suits::kHearts, Value::kFour),
-	C4(Suits::kHearts, Value::kTwo),
-	C5(Suits::kSpades, Value::kSix),
-	C6(Suits::kHearts, Value::kJack),
-	C7(Suits::kSpades, Value::kFive);
-
-	Player player0("Hugo");
-
-	std::vector<Card> deck_p0;
-
-	deck_p0.push_back(C1);
-	deck_p0.push_back(C2);
-	deck_p0.push_back(C3);
-	deck_p0.push_back(C4);
-	deck_p0.push_back(C5);
-	deck_p0.push_back(C6);
-	deck_p0.push_back(C7);
-
-	switch (Check_Straight(deck_p0))
-	{
-	case true:
-		std::cout << "player 0 has a Straight\n";
-		break;
-	case false:
-		std::cout << "player 0 does not have a Straight\n";
-		break;
-	}
-
-	switch (Check_Flush(deck_p0))
-	{
-	case true:
-		std::cout << "player 0 has a Flush\n";
-		break;
-	case false:
-		std::cout << "player 0 does not have a Flush\n";
-		break;
-	}
-	//------------------------------
-
 
 	/*Check_Win(player1, player2, table);
 
@@ -115,4 +72,126 @@ int main()
 	}*/
 
 
+
+
+
+	//---------------------------
+	//function verification
+
+	Card
+		C1(Suits::kClubs, Value::kAce),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kQueen),
+		C4(Suits::kSpades, Value::kTwo),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+
+	Player player0("Hugo");
+	Table t;
+
+	player0.SetCard(C1, C2);
+	player0.SetHighCard();
+	t.FillTable(C3, C4, C5, C6, C7);
+
+	Check_Hands(player0, t);
+
+	player0.DisplayHand();
+	//------------------------------
 }
+
+
+/*
+
+		Royal Flush
+		C1(Suits::kHearts, Value::kAce),
+		C2(Suits::kHearts, Value::kKing),
+		C3(Suits::kHearts, Value::kJack),
+		C4(Suits::kHearts, Value::kTen),
+		C5(Suits::kHearts, Value::kQueen),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Straight Flush
+		C1(Suits::kHearts, Value::kTwo),
+		C2(Suits::kHearts, Value::kThree),
+		C3(Suits::kHearts, Value::kFour),
+		C4(Suits::kHearts, Value::kFive),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kHearts, Value::kSeven),
+		C7(Suits::kHearts, Value::kEight);
+
+		Four of a kind
+		C1(Suits::kClubs, Value::kTen),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kTen),
+		C4(Suits::kSpades, Value::kTen),
+		C5(Suits::kHearts, Value::kQueen),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Full House
+		C1(Suits::kClubs, Value::kTen),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kTen),
+		C4(Suits::kSpades, Value::kNine),
+		C5(Suits::kHearts, Value::kNine),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Flush
+		C1(Suits::kHearts, Value::kTwo),
+		C2(Suits::kHearts, Value::kSeven),
+		C3(Suits::kHearts, Value::kFour),
+		C4(Suits::kHearts, Value::kJack),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Straight
+		C1(Suits::kSpades, Value::kTwo),
+		C2(Suits::kDiamonds, Value::kThree),
+		C3(Suits::kClubs, Value::kFour),
+		C4(Suits::kHearts, Value::kFive),
+		C5(Suits::kDiamonds, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Three of a kind
+		C1(Suits::kClubs, Value::kAce),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kTen),
+		C4(Suits::kSpades, Value::kTen),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Two Pair
+		C1(Suits::kClubs, Value::kAce),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kTen),
+		C4(Suits::kSpades, Value::kSix),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		Pair
+		C1(Suits::kClubs, Value::kAce),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kTen),
+		C4(Suits::kSpades, Value::kTwo),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+		High Card
+		C1(Suits::kClubs, Value::kAce),
+		C2(Suits::kHearts, Value::kTen),
+		C3(Suits::kDiamonds, Value::kQueen),
+		C4(Suits::kSpades, Value::kTwo),
+		C5(Suits::kHearts, Value::kSix),
+		C6(Suits::kClubs, Value::kSeven),
+		C7(Suits::kSpades, Value::kEight);
+
+ */
