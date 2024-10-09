@@ -47,52 +47,8 @@ void Player::SetHighCard()
 
 void Player::DisplayWinningHand()
 {
-	std::string high_card;
 	std::string ranking_value;
 	std::string hand;
-
-	switch ((int)hand_.high_card)
-	{
-	case 2:
-		high_card = "Two";
-		break;
-	case 3:
-		high_card = "Three";
-		break;
-	case 4:
-		high_card = "Four";
-		break;
-	case 5:
-		high_card = "Five";
-		break;
-	case 6:
-		high_card = "Six";
-		break;
-	case 7:
-		high_card = "Seven";
-		break;
-	case 8:
-		high_card = "Eight";
-		break;
-	case 9:
-		high_card = "Nine";
-		break;
-	case 10:
-		high_card = "Ten";
-		break;
-	case 11:
-		high_card = "Jack";
-		break;
-	case 12:
-		high_card = "Queen";
-		break;
-	case 13:
-		high_card = "King";
-		break;
-	case 14:
-		high_card = "Ace";
-		break;
-	}
 
 	switch ((int)hand_.ranking_value)
 	{
