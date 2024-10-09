@@ -23,6 +23,10 @@ void Player::SetHands(Hands hand, Value rank)
 	
 }
 
+void Player::SetName(std::string name)
+{
+	name_ = name;
+}
 void Player::SetHighCard()
 {
 	std::vector<Card> cards_ = this->GetCards();
@@ -162,7 +166,7 @@ void Player::DisplayHand()
 		break;
 	}
 
-	std::cout << "High Card between the two in Hand : " << high_card << '\n' << "High Card in the hand played : " << ranking_value << '\n' << "Hand played : " << hand;
+	std::cout << "High Card between the two in Hand : " << high_card << '\n' << "High Card in the hand played : " << ranking_value << '\n' << "Hand played : " << hand << "\n\n";
 }
 
 void Player::Player_reset() 

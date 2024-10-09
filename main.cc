@@ -16,88 +16,63 @@ int main()
 	Table table;
 	int counter = 0;
 
-	do 
+
+	deck.DestroyDeck();
+	table.Destroy_table();
+	player1.Player_reset();
+	player2.Player_reset();
+
+
+
+	std::cout << "Enter the first player's name :\n";
+	std::string Player1_name;
+	std::cin >> Player1_name;
+	player1.SetName(Player1_name);
+
+	std::cout << "Enter the second player's name :\n";
+	std::string Player2_name;
+	std::cin >> Player2_name;
+	player2.SetName(Player2_name);
+
+	deck.Fill();
+
+
+	Card c1 = deck.PickACard();
+	Card c2 = deck.PickACard();
+
+	player1.SetCard(c1, c2);
+	player1.SetHighCard();
+
+
+	Card c3 = deck.PickACard();
+	Card c4 = deck.PickACard();
+
+	player2.SetCard(c3, c4);
+	player2.SetHighCard();
+
+
+	table.Flop(deck);
+	table.Turn(deck);
+	table.River(deck);
+
+	player1.Display_cards();
+	player2.Display_cards();
+
+	switch (Check_Win(player1, player2, table))
 	{
-		deck.DestroyDeck();
-		table.Destroy_table();
-		player1.Player_reset();
-		player2.Player_reset();
-
-
-		//std::cout << "Enter the first player's name :\n";
-		//std::string Player1_name;
-		//std::cin >> Player1_name;
-
-		//std::cout << "Enter the second player's name :\n";
-		//std::string Player2_name;
-		//std::cin >> Player2_name;
-
-		deck.Fill();
-		//deck.DisplayDeck();
-
-
-
-		Card c1 = deck.PickACard();
-		Card c2 = deck.PickACard();
-
-		player1.SetCard(c1, c2);
-		player1.SetHighCard();
-
-
-		Card c3 = deck.PickACard();
-		Card c4 = deck.PickACard();
-
-		player2.SetCard(c3, c4);
-		player2.SetHighCard();
-	
-		//deck.DisplayDeck();
-
-
-
-		table.Flop(deck);
-		table.Turn(deck);
-		table.River(deck);
-
-		//deck.DisplayDeck();
-
-		Check_Hands(player1, table);
-		Check_Hands(player2, table);
-
-		table.Display_table();
-		std::cout << "\n";
-		player1.Display_cards();
+	case 0:
+		std::cout << "It's a Draw\n";
+	case 1:
+		std::cout << Player1_name << " Wins with :\n";
 		player1.DisplayHand();
-		std::cout << "\n\n";
-		player2.Display_cards();
 		player2.DisplayHand();
-		std::cout << "\n\n\n";
-
-		counter += 1;
-
-	} while ((int)player1.GetHands().hand != (int)Hands::kRoyal_flush);
-
-	
-
-	std::cout << counter << " Games played\n";
-
-
-	//switch (Check_Win(player1, player2, table))
-	//{
-	//case 0:
-	//	std::cout << "It's a Draw\n";
-	//case 1:
-	//	std::cout << Player1_name << " Wins with :\n";
-	//	player1.DisplayHand();
-	//	break;
-	//case 2:
-	//	std::cout << Player2_name << " Wins with :\n";
-	//	player2.DisplayHand();
-	//	break;
-	//}
-	//std::cout << '\n';
-
-
-
+		break;
+	case 2:
+		std::cout << Player2_name << " Wins with :\n";
+		player2.DisplayHand();
+		player1.DisplayHand();
+		break;
+	}
 
 
 	//---------------------------

@@ -27,6 +27,8 @@ public:
 
 	std::string GetName() { return name_; }
 
+	void SetName(std::string _name);
+
 	void SetHands(Hands hand, Value rank);
 
 	void SetHighCard();

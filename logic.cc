@@ -258,7 +258,7 @@ bool Check_Straight_Flush(Player& p, Table& t)
 	return IsStraight_flush;
 }
 
-void Check_Pair(Player &p, Table &t)
+void Check_same_cards(Player &p, Table &t)
 {
 
 	std::multimap<Value, Suits> mymap;
@@ -389,7 +389,7 @@ int Check_Hands(Player &p, Table &t)
 	}
 	else
 	{
-		Check_Pair(p, t);
+		Check_same_cards(p, t);
 		if (p.GetHands().hand == Hands::kFour_of_a_kind)
 		{
 			//Four_of_a_Kind
@@ -414,7 +414,7 @@ int Check_Hands(Player &p, Table &t)
 			}
 			else
 			{
-				Check_Pair(p, t);
+				Check_same_cards(p, t);
 				if (p.GetHands().hand == Hands::kThree_of_a_kind)
 				{
 					//Three_of_a_Kind
@@ -444,11 +444,11 @@ int Check_Hands(Player &p, Table &t)
 
 int Check_Win(Player &p1, Player &p2, Table &t)
 {
-	if (Check_Hands(p1,t) > Check_Hands(p2,t))
+	if (Check_Hands(p1,t) < Check_Hands(p2,t))
 	{
 		return 1;
 	}
-	else if(Check_Hands(p1, t) < Check_Hands(p2, t))
+	else if(Check_Hands(p1, t) > Check_Hands(p2, t))
 	{
 		return 2;
 	}
