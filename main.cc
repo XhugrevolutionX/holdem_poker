@@ -16,87 +16,98 @@ int main()
 	Table table;
 	int counter = 0;
 
-
-	deck.DestroyDeck();
-	table.Destroy_table();
-	player1.Player_reset();
-	player2.Player_reset();
-
-
-
+	//Ask players to enter their names
 	std::cout << "Enter the first player's name :\n";
 	std::string Player1_name;
 	std::cin >> Player1_name;
 	player1.SetName(Player1_name);
+
+	system("cls");
 
 	std::cout << "Enter the second player's name :\n";
 	std::string Player2_name;
 	std::cin >> Player2_name;
 	player2.SetName(Player2_name);
 
-	system("cls");
-
-	deck.Fill();
-
-
-	Card c1 = deck.PickACard();
-	Card c2 = deck.PickACard();
-
-	player1.SetCard(c1, c2);
-	player1.SetHighCard();
-	player1.Display_cards();
-	system("pause");
-	system("cls");
-
-	Card c3 = deck.PickACard();
-	Card c4 = deck.PickACard();
-
-	player2.SetCard(c3, c4);
-	player2.SetHighCard();
-	player2.Display_cards();
-
-
-	//first bet
-	system("pause");
-	system("cls");
-
-
-	table.Flop(deck);
-	table.Display_table();
-	//Second bet
-	system("pause");
-	system("cls");
-
-
-	table.Turn(deck);
-	table.Display_table();
-	//Third bet
-	system("pause");
-	system("cls");
-
-
-	table.River(deck);
-	table.Display_table();
-	// Fourth bet
-	system("pause");
-	system("cls");
-
-
-
-	switch (Check_Win(player1, player2, table))
+	//enter game loop
+	do
 	{
-	case 0:
-		std::cout << "It's a Draw\n";
-		break;
-	case 1:
-		std::cout << Player1_name << " Wins with :\n";
-		player1.DisplayHand();
-		player2.DisplayHand();
-		break;
-	case 2:
-		std::cout << Player2_name << " Wins with :\n";
-		player2.DisplayHand();
-		player1.DisplayHand();
-		break;
-	}
+		system("cls");
+
+		//reset the dech, the table, and the player cards
+		deck.DestroyDeck();
+		table.Reset_table();
+		player1.Reset_cards();
+		player2.Reset_cards();
+
+		deck.Fill();
+
+
+		//Pick cards for the two players
+		Card c1 = deck.PickACard();
+		Card c2 = deck.PickACard();
+
+		player1.SetCard(c1, c2);
+		player1.SetHighCard();
+
+		Card c3 = deck.PickACard();
+		Card c4 = deck.PickACard();
+
+		player2.SetCard(c3, c4);
+		player2.SetHighCard();
+
+
+		//Game begins with first bet
+		player1.Bet(table);
+		player2.Bet(table);
+
+
+		table.Flop(deck);
+
+		player1.Bet(table);
+		player2.Bet(table);
+
+
+		table.Turn(deck);
+
+		player1.Bet(table);
+		player2.Bet(table);
+
+
+		table.River(deck);
+
+		player1.Bet(table);
+		player2.Bet(table);
+
+		table.Display_table();
+		std::cout << '\n' << Player1_name << "' ";
+		player1.Display_cards();
+		std::cout << '\n' << Player2_name << "' ";
+		player2.Display_cards();
+		std::cout << "\n\n";
+
+		//After all the bets and all cards are revealed check the winner and give him the pot
+		switch (Check_Win(player1, player2, table))
+		{
+		case 0:
+			std::cout << "It's a Draw\n";
+			player1.Gain(player2, table);
+			system("pause");
+			break;
+		case 1:
+			std::cout << Player1_name << " Wins with ";
+			player1.DisplayWinningHand();
+			player1.Gain(table);
+			system("pause");
+			break;
+		case 2:
+			std::cout << Player2_name << " Wins with ";
+			player2.DisplayWinningHand();
+			player2.Gain(table);
+			system("pause");
+			break;
+		}
+
+	} while (player1.GetMoney() > 0 && player2.GetMoney() > 0);
+
 }

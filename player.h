@@ -3,6 +3,7 @@
 
 #include "card.h"
 #include "hands.h"
+#include "table.h"
 
 class Player
 {
@@ -10,6 +11,7 @@ private:
 	std::string name_;
 	std::vector<Card> cards_;
 	HandValue hand_;
+	int money = 500;
 public:
 
 	Player() = default;
@@ -18,6 +20,10 @@ public:
 	{}
 
 	void Display_cards();
+
+	void Display_money();
+
+	int GetMoney() { return money; }
 	
 	void SetCard(Card c1, Card c2);
 
@@ -33,9 +39,15 @@ public:
 
 	void SetHighCard();
 
-	void DisplayHand();
+	void DisplayWinningHand();
 
-	void Player_reset();
+	void Reset_cards();
+
+	void Bet(Table& tab_);
+
+	void Gain(Table& tab_);
+
+	void Gain(Player& p2, Table& tab_);
 };
 
 #endif // PLAYER_H

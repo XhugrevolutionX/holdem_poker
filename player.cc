@@ -4,10 +4,15 @@
 
 void Player::Display_cards()
 {
-	std::cout << name_ << "'s cards :\n";
+	std::cout <<"cards : ";
 	cards_[0].Display();
+	std::cout << ", ";
 	cards_[1].Display();
-	std::cout << '\n';
+}
+
+void Player::Display_money()
+{
+	std::cout << '\n' << "money : " << this->money << " $" << '\n';
 }
 
 void Player::SetCard(Card c1, Card c2)
@@ -40,7 +45,7 @@ void Player::SetHighCard()
 	}
 }
 
-void Player::DisplayHand()
+void Player::DisplayWinningHand()
 {
 	std::string high_card;
 	std::string ranking_value;
@@ -166,14 +171,48 @@ void Player::DisplayHand()
 		break;
 	}
 
-	std::cout << "High Card between the two in Hand : " << high_card << '\n' << "High Card in the hand played : " << ranking_value << '\n' << "Hand played : " << hand << "\n\n";
+	std::cout << hand << " by " << ranking_value << '\n';
 }
 
-void Player::Player_reset() 
+void Player::Reset_cards() 
 {
-	name_ = "";
 	cards_.clear();
 	hand_.hand = Hands::kHigh_car;
 	hand_.high_card = Value::kTwo;
 	hand_.ranking_value = Value::kTwo;
+}
+
+void Player::Bet(Table& tab_)
+{
+	int bet_;
+
+	if (tab_.GetCommunityCards().size() != 0)
+	{
+		tab_.Display_table();
+	}
+
+	this->Display_cards();
+	this->Display_money();
+	std::cout << '\n' << this->name_ << " enter your bet\n";
+	std::cin >> bet_;
+
+	this->money -= bet_;
+	tab_.pot += bet_;
+
+	system("cls");
+	system("pause");
+	system("cls");
+}
+
+void Player::Gain(Table& tab_)
+{
+	std::cout << this->name_ << " gains " << tab_.pot << " $" << "\n\n";
+	this->money += tab_.pot;
+}
+
+void Player::Gain(Player& p2, Table& tab_)
+{
+	std::cout << "Both players gains " << (tab_.pot/2) << " $" << "\n\n";
+	this->money += (tab_.pot / 2);
+	p2.money += (tab_.pot / 2);
 }

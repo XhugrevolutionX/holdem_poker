@@ -81,7 +81,7 @@ void Card::Display()
 		break;
 	}
 
-	std::cout << v << " of " << s << '\n';
+	std::cout << v << " of " << s;
 }
 
 void Card::Random()

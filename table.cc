@@ -43,11 +43,13 @@ void Table::Display_table()
 	for (int i = 0; i < community_cards_.size(); i++)
 	{
 		community_cards_[i].Display();
+		std::cout << '\n';
 	}
-	std::cout << '\n';
+	std::cout << '\n' << "pot : " << this->pot << " $" << "\n\n";
 }
 
-void Table::Destroy_table()
+void Table::Reset_table()
 {
 	community_cards_.clear();
+	pot = 0;
 }

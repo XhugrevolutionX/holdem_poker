@@ -9,6 +9,7 @@ class Table
 private:
 	std::vector<Card> community_cards_;
 public:
+	int pot;
 
 	Table();
 
@@ -24,7 +25,7 @@ public:
 
 	void Display_table();
 
-	void Destroy_table();
+	void Reset_table();
 };
 
 #endif // TABLE_H
