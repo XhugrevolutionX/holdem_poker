@@ -34,6 +34,8 @@ int main()
 	std::cin >> Player2_name;
 	player2.SetName(Player2_name);
 
+	system("cls");
+
 	deck.Fill();
 
 
@@ -42,26 +44,50 @@ int main()
 
 	player1.SetCard(c1, c2);
 	player1.SetHighCard();
-
+	player1.Display_cards();
+	system("pause");
+	system("cls");
 
 	Card c3 = deck.PickACard();
 	Card c4 = deck.PickACard();
 
 	player2.SetCard(c3, c4);
 	player2.SetHighCard();
+	player2.Display_cards();
+
+
+	//first bet
+	system("pause");
+	system("cls");
 
 
 	table.Flop(deck);
-	table.Turn(deck);
-	table.River(deck);
+	table.Display_table();
+	//Second bet
+	system("pause");
+	system("cls");
 
-	player1.Display_cards();
-	player2.Display_cards();
+
+	table.Turn(deck);
+	table.Display_table();
+	//Third bet
+	system("pause");
+	system("cls");
+
+
+	table.River(deck);
+	table.Display_table();
+	// Fourth bet
+	system("pause");
+	system("cls");
+
+
 
 	switch (Check_Win(player1, player2, table))
 	{
 	case 0:
 		std::cout << "It's a Draw\n";
+		break;
 	case 1:
 		std::cout << Player1_name << " Wins with :\n";
 		player1.DisplayHand();
@@ -73,125 +99,4 @@ int main()
 		player1.DisplayHand();
 		break;
 	}
-
-
-	//---------------------------
-	//function verification
-
-	//Card
-	//	C1(Suits::kHearts, Value::kAce),
-	//	C2(Suits::kHearts, Value::kKing),
-	//	C3(Suits::kHearts, Value::kJack),
-	//	C4(Suits::kHearts, Value::kTen),
-	//	C5(Suits::kHearts, Value::kQueen),
-	//	C6(Suits::kClubs, Value::kSeven),
-	//	C7(Suits::kSpades, Value::kEight);
-
-
-	//Player player0("Hugo");
-	//Table t;
-
-	//player0.SetCard(C1, C2);
-	//player0.SetHighCard();
-	//t.FillTable(C3, C4, C5, C6, C7);
-
-	//Check_Hands(player0, t);
-
-	//player0.DisplayHand();
-	//------------------------------
 }
-
-
-/*
-
-		Royal Flush
-		C1(Suits::kHearts, Value::kAce),
-		C2(Suits::kHearts, Value::kKing),
-		C3(Suits::kHearts, Value::kJack),
-		C4(Suits::kHearts, Value::kTen),
-		C5(Suits::kHearts, Value::kQueen),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Straight Flush
-		C1(Suits::kHearts, Value::kTwo),
-		C2(Suits::kHearts, Value::kThree),
-		C3(Suits::kHearts, Value::kFour),
-		C4(Suits::kHearts, Value::kFive),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kHearts, Value::kSeven),
-		C7(Suits::kHearts, Value::kEight);
-
-		Four of a kind
-		C1(Suits::kClubs, Value::kTen),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kTen),
-		C4(Suits::kSpades, Value::kTen),
-		C5(Suits::kHearts, Value::kQueen),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Full House
-		C1(Suits::kClubs, Value::kTen),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kTen),
-		C4(Suits::kSpades, Value::kNine),
-		C5(Suits::kHearts, Value::kNine),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Flush
-		C1(Suits::kHearts, Value::kTwo),
-		C2(Suits::kHearts, Value::kSeven),
-		C3(Suits::kHearts, Value::kFour),
-		C4(Suits::kHearts, Value::kJack),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Straight
-		C1(Suits::kSpades, Value::kTwo),
-		C2(Suits::kDiamonds, Value::kThree),
-		C3(Suits::kClubs, Value::kFour),
-		C4(Suits::kHearts, Value::kFive),
-		C5(Suits::kDiamonds, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Three of a kind
-		C1(Suits::kClubs, Value::kAce),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kTen),
-		C4(Suits::kSpades, Value::kTen),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Two Pair
-		C1(Suits::kClubs, Value::kAce),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kTen),
-		C4(Suits::kSpades, Value::kSix),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		Pair
-		C1(Suits::kClubs, Value::kAce),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kTen),
-		C4(Suits::kSpades, Value::kTwo),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
-		High Card
-		C1(Suits::kClubs, Value::kAce),
-		C2(Suits::kHearts, Value::kTen),
-		C3(Suits::kDiamonds, Value::kQueen),
-		C4(Suits::kSpades, Value::kTwo),
-		C5(Suits::kHearts, Value::kSix),
-		C6(Suits::kClubs, Value::kSeven),
-		C7(Suits::kSpades, Value::kEight);
-
- */
