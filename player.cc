@@ -164,3 +164,12 @@ void Player::DisplayHand()
 
 	std::cout << "High Card between the two in Hand : " << high_card << '\n' << "High Card in the hand played : " << ranking_value << '\n' << "Hand played : " << hand;
 }
+
+void Player::Player_reset() 
+{
+	name_ = "";
+	cards_.clear();
+	hand_.hand = Hands::kHigh_car;
+	hand_.high_card = Value::kTwo;
+	hand_.ranking_value = Value::kTwo;
+}

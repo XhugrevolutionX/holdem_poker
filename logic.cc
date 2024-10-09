@@ -44,6 +44,7 @@ bool Check_Flush(Player &p, Table &t)
 		if (countmap[Suits::kClubs] >= 5)
 		{
 			IsFlush = true;
+
 			High_card = highmap[Suits::kClubs];
 		}
 		else if(countmap[Suits::kHearts] >= 5)
@@ -107,9 +108,9 @@ bool Check_Straight(Player &p, Table &t)
 		}
 		else 
 		{
-			if (counterStraight != 0)
+			if (counterStraight != 0 && counterStraight < 4)
 			{
-				High_card = c.GetValue();
+				counterStraight = 0;
 			}
 		}
 
@@ -146,6 +147,115 @@ bool Check_as_an_Ace(Player &p, Table &t)
 		}
 	}
 	return as_an_ace;
+}
+
+
+bool Check_Royal_Flush(Player& p, Table& t)
+{
+	std::vector<Card> deck_p;
+	bool IsRoyal_flush = false;
+	int counterRoyal_flush = 0;
+	std::multimap<Value, Suits> mymap;
+	Value High_card;
+
+
+	for (Card c : t.GetCommunityCards())
+	{
+		mymap.insert(std::pair<Value, Suits>(c.GetValue(), c.GetSuit()));
+	}
+	for (Card c : p.GetCards())
+	{
+		mymap.insert(std::pair<Value, Suits>(c.GetValue(), c.GetSuit()));
+	}
+
+	for (std::pair<Value, Suits> m : mymap)
+	{
+		Card c(m.second, m.first);
+		deck_p.push_back(c);
+	}
+
+	Card temp = deck_p[0];
+	deck_p.erase(deck_p.begin());
+
+	for (Card c : deck_p)
+	{
+
+		if ((int)c.GetValue() == (int)temp.GetValue() + 1 && c.GetSuit() == temp.GetSuit())
+		{
+			counterRoyal_flush += 1;
+			High_card = c.GetValue();
+		}
+		else
+		{
+			if (counterRoyal_flush != 0 && counterRoyal_flush < 4)
+			{
+				counterRoyal_flush = 0;
+			}
+		}
+
+		temp = c;
+	}
+	if (counterRoyal_flush >= 4 && High_card == Value::kAce)
+	{
+		IsRoyal_flush = true;
+		p.SetHands(Hands::kRoyal_flush, High_card);
+	}
+
+	return IsRoyal_flush;
+}
+
+bool Check_Straight_Flush(Player& p, Table& t)
+{
+	std::vector<Card> deck_p;
+	bool IsStraight_flush = false;
+	int counterStraight_flush = 0;
+	std::multimap<Value, Suits> mymap;
+	Value High_card;
+
+
+	for (Card c : t.GetCommunityCards())
+	{
+		mymap.insert(std::pair<Value, Suits>(c.GetValue(), c.GetSuit()));
+	}
+	for (Card c : p.GetCards())
+	{
+		mymap.insert(std::pair<Value, Suits>(c.GetValue(), c.GetSuit()));
+	}
+
+	for (std::pair<Value, Suits> m : mymap)
+	{
+		Card c(m.second, m.first);
+		deck_p.push_back(c);
+	}
+
+	Card temp = deck_p[0];
+	deck_p.erase(deck_p.begin());
+
+	for (Card c : deck_p)
+	{
+
+		if ((int)c.GetValue() == (int)temp.GetValue() + 1 && c.GetSuit() == temp.GetSuit())
+		{
+			counterStraight_flush += 1;
+			High_card = c.GetValue();
+		}
+		else
+		{
+			if (counterStraight_flush != 0 && counterStraight_flush < 4)
+			{
+				counterStraight_flush = 0;
+			}
+		}
+
+		temp = c;
+	}
+	if (counterStraight_flush >= 4)
+	{
+		IsStraight_flush = true;
+		p.SetHands(Hands::kStraight_flush, High_card);
+	}
+
+	return IsStraight_flush;
 }
 
 void Check_Pair(Player &p, Table &t)
@@ -185,17 +295,17 @@ void Check_Pair(Player &p, Table &t)
 
 	for (auto entry : occurences)
 	{
-		if(entry.second == 2)
+		if(entry.second >= 2)
 		{
 			nb_pair++;
 			used_cards.push_back(entry.first);
 		}
-		else if(entry.second == 3)
+		if(entry.second >= 3)
 		{
 			isThree_of_a_kind = true;
 			used_cards.push_back(entry.first);
 		}
-		else if (entry.second == 4)
+		if (entry.second == 4)
 		{
 			isFour_of_a_kind = true;
 			used_cards.push_back(entry.first);
@@ -219,7 +329,7 @@ void Check_Pair(Player &p, Table &t)
 		{
 			p.SetHands(Hands::kFour_of_a_kind, High_card);
 		}
-		else if (nb_pair == 1 && isThree_of_a_kind)
+		else if (nb_pair == 2 && isThree_of_a_kind)
 		{
 			p.SetHands(Hands::kFull_house, High_card);
 		}
@@ -227,7 +337,7 @@ void Check_Pair(Player &p, Table &t)
 		{
 			p.SetHands(Hands::kThree_of_a_kind, High_card);
 		}
-		else if (nb_pair == 2)
+		else if (nb_pair >= 2)
 		{
 			p.SetHands(Hands::kTwo_pairs, High_card);
 		}
@@ -236,26 +346,6 @@ void Check_Pair(Player &p, Table &t)
 			p.SetHands(Hands::kPair, High_card);
 		}
 	}
-}
-
-bool Check_Royal_Flush(Player& p, Table& t)
-{
-	if (Check_Flush(p, t) && Check_Straight(p, t) && Check_as_an_Ace(p,t))
-	{
-		p.SetHands(Hands::kRoyal_flush, Value::kAce);
-		return true;
-	}
-	return false;
-}
-
-bool Check_Straight_Flush(Player& p, Table& t)
-{
-	if(Check_Flush(p, t) && Check_Straight(p, t))
-	{
-		p.SetHands(Hands::kStraight_flush, p.GetHands().ranking_value);
-		return true;
-	}
-	return false;
 }
 
 void High_card(Player& p, Table& t)
@@ -352,29 +442,40 @@ int Check_Hands(Player &p, Table &t)
 }
 
 
-//int Check_Win(Player &p1, Player &p2, Table &t)
-//{
-//	if (Check_Hands(p1,t) > Check_Hands(p2,t))
-//	{
-//		return 1;
-//	}
-//	else if(Check_Hands(p1, t) < Check_Hands(p2, t))
-//	{
-//		return 2;
-//	}
-//	else
-//	{
-//		if(Check_Score(p1, t) > Check_Score(p2, t))
-//		{
-//			return 1;
-//		}
-//		else if (Check_Score(p1, t) < Check_Score(p2, t))
-//		{
-//			return 2;
-//		}
-//		else
-//		{
-//			return 0;
-//		}
-//	}
-//}
+int Check_Win(Player &p1, Player &p2, Table &t)
+{
+	if (Check_Hands(p1,t) > Check_Hands(p2,t))
+	{
+		return 1;
+	}
+	else if(Check_Hands(p1, t) < Check_Hands(p2, t))
+	{
+		return 2;
+	}
+	else
+	{
+		if(p1.GetHands().ranking_value > p2.GetHands().ranking_value)
+		{
+			return 1;
+		}
+		else if (p2.GetHands().ranking_value > p1.GetHands().ranking_value)
+		{
+			return 2;
+		}
+		else
+		{
+			if (p1.GetHands().high_card > p2.GetHands().high_card)
+			{
+				return 1;
+			}
+			else if (p2.GetHands().high_card > p1.GetHands().high_card)
+			{
+				return 2;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+}

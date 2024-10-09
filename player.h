@@ -32,6 +32,8 @@ public:
 	void SetHighCard();
 
 	void DisplayHand();
+
+	void Player_reset();
 };
 
 #endif // PLAYER_H

@@ -22,5 +22,7 @@ public:
 	void Clear();
 
 	void Burn();
+
+	void DestroyDeck();
 };
 #endif // DECK_H

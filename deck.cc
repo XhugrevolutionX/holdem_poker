@@ -76,3 +76,11 @@ void Deck::Burn()
 {
 	deck.pop_back();
 }
+
+void Deck::DestroyDeck()
+{
+	for (Card c : deck)
+	{
+		this->Burn();
+	}
+}
