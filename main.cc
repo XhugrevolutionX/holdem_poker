@@ -66,36 +66,56 @@ int main()
 		do
 		{
 			player1.Bet(table, player2, pot);
+			if (player1.GetBet() == player2.GetBet())
+			{
+				continue;	
+			}
 			player2.Bet(table, player1, pot);
 			pot = Calculate_pot(player1, player2);
 		} while (player1.GetBet() != player2.GetBet());
+		pot = Calculate_pot(player1, player2);
 		table.Flop(deck);
 
 		//second bet
 		do
 		{
 			player1.Bet(table, player2, pot);
+			if (player1.GetBet() == player2.GetBet())
+			{
+				continue;
+			}
 			player2.Bet(table, player1, pot);
 			pot = Calculate_pot(player1, player2);
 		} while (player1.GetBet() != player2.GetBet());
+		pot = Calculate_pot(player1, player2);
 		table.Turn(deck);
 
 		//Third bet
 		do
 		{
 			player1.Bet(table, player2, pot);
+			if (player1.GetBet() == player2.GetBet())
+			{
+				continue;
+			}
 			player2.Bet(table, player1, pot);
 			pot = Calculate_pot(player1, player2);
 		} while (player1.GetBet() != player2.GetBet());
+		pot = Calculate_pot(player1, player2);
 		table.River(deck);
 
 		//Last bet before the reveal
 		do
 		{
 			player1.Bet(table, player2, pot);
+			if (player1.GetBet() == player2.GetBet())
+			{
+				continue;
+			}
 			player2.Bet(table, player1, pot);
 			pot = Calculate_pot(player1, player2);
 		} while (player1.GetBet() != player2.GetBet());
+		pot = Calculate_pot(player1, player2);
 
 		//Display all of the cards
 		table.Display_table(player1.GetBet() + player2.GetBet());
