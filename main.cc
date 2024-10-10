@@ -63,59 +63,19 @@ int main()
 		pot = Calculate_pot(player1, player2);
 
 		//Game begins with first bet
-		do
-		{
-			player1.Bet(table, player2, pot);
-			if (player1.GetBet() == player2.GetBet())
-			{
-				continue;	
-			}
-			player2.Bet(table, player1, pot);
-			pot = Calculate_pot(player1, player2);
-		} while (player1.GetBet() != player2.GetBet());
-		pot = Calculate_pot(player1, player2);
+		Betting_loop(player1, player2, table, pot);
 		table.Flop(deck);
 
 		//second bet
-		do
-		{
-			player1.Bet(table, player2, pot);
-			if (player1.GetBet() == player2.GetBet())
-			{
-				continue;
-			}
-			player2.Bet(table, player1, pot);
-			pot = Calculate_pot(player1, player2);
-		} while (player1.GetBet() != player2.GetBet());
-		pot = Calculate_pot(player1, player2);
+		Betting_loop(player1, player2, table, pot);
 		table.Turn(deck);
 
 		//Third bet
-		do
-		{
-			player1.Bet(table, player2, pot);
-			if (player1.GetBet() == player2.GetBet())
-			{
-				continue;
-			}
-			player2.Bet(table, player1, pot);
-			pot = Calculate_pot(player1, player2);
-		} while (player1.GetBet() != player2.GetBet());
-		pot = Calculate_pot(player1, player2);
+		Betting_loop(player1, player2, table, pot);
 		table.River(deck);
 
 		//Last bet before the reveal
-		do
-		{
-			player1.Bet(table, player2, pot);
-			if (player1.GetBet() == player2.GetBet())
-			{
-				continue;
-			}
-			player2.Bet(table, player1, pot);
-			pot = Calculate_pot(player1, player2);
-		} while (player1.GetBet() != player2.GetBet());
-		pot = Calculate_pot(player1, player2);
+		Betting_loop(player1, player2, table, pot);
 
 		//Display all of the cards
 		table.Display_table(player1.GetBet() + player2.GetBet());
@@ -152,6 +112,17 @@ int main()
 		}
 		counter++;
 	} while (player1.GetMoney() > 0 && player2.GetMoney() > 0);
+
+	if (player1.GetMoney() == 0)
+	{
+		std::cout << Player1_name << " doesn't have anymore more money" << '\n';
+		std::cout << "The Winner is " << Player2_name << '\n';
+	}
+	else
+	{
+		std::cout << Player2_name << " doesn't have anymore more money" << '\n';
+		std::cout << "The Winner is " << Player1_name << '\n';
+	}
 	std::cout << counter << '\n';
 	system("pause");
 }

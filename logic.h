@@ -15,8 +15,9 @@ int Check_Win(Player& p1, Player& p2, Table& t);
 
 int Check_Hands(Player &p, Table &t);
 
-int Calculate_pot(Player p1, Player p2);
+int Calculate_pot(Player& p1, Player& p2);
 
+void Betting_loop(Player& p1, Player& p2, Table& t, int& p);
 
 
 

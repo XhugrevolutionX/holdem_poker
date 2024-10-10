@@ -181,7 +181,7 @@ void Player::ResetBet()
 	this->total_bet = 0;
 }
 
-void Player::Gain(Player p2, bool draw_)
+void Player::Gain(Player& p2, bool draw_)
 {
 	int pot = (this->GetBet() + p2.GetBet());
 

@@ -480,9 +480,24 @@ int Check_Win(Player &p1, Player &p2, Table &t)
 	}
 }
 
-int Calculate_pot(Player p1, Player p2)
+int Calculate_pot(Player& p1, Player& p2)
 {
 	 int pot = p1.GetBet() + p2.GetBet();
 
 	 return pot;
+}
+
+void Betting_loop(Player& p1, Player& p2, Table& t, int& p)
+{
+	do
+	{
+		p1.Bet(t, p2, p);
+		if (p1.GetBet() == p2.GetBet())
+		{
+			continue;
+		}
+		p2.Bet(t, p1, p);
+		p = Calculate_pot(p1, p2);
+	} while (p1.GetBet() != p2.GetBet());
+	p = Calculate_pot(p1, p2);
 }

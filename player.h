@@ -54,7 +54,7 @@ public:
 
 	void ResetBet();
 
-	void Gain(Player p2, bool draw_);
+	void Gain(Player& p2, bool draw_);
 };
 
 #endif // PLAYER_H
