@@ -1,5 +1,6 @@
 #include <iostream>
 #include "table.h"
+#include "player.h"
 
 
 Table::Table()
@@ -38,18 +39,17 @@ void Table::FillTable(Card C1, Card C2, Card C3, Card C4, Card C5)
 	community_cards_.push_back(C5);
 }
 
-void Table::Display_table()
+void Table::Display_table(int pot_)
 {
 	for (int i = 0; i < community_cards_.size(); i++)
 	{
 		community_cards_[i].Display();
 		std::cout << '\n';
 	}
-	std::cout << '\n' << "pot : " << this->pot << " $" << "\n\n";
+	std::cout << '\n' << "pot : " << pot_ << " $" << "\n\n";
 }
 
 void Table::Reset_table()
 {
 	community_cards_.clear();
-	pot = 0;
 }

@@ -479,3 +479,10 @@ int Check_Win(Player &p1, Player &p2, Table &t)
 		}
 	}
 }
+
+int Calculate_pot(Player p1, Player p2)
+{
+	 int pot = p1.GetBet() + p2.GetBet();
+
+	 return pot;
+}

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "player.h"
-
+#include "table.h"
 
 void Player::Display_cards()
 {
@@ -32,6 +32,7 @@ void Player::SetName(std::string name)
 {
 	name_ = name;
 }
+
 void Player::SetHighCard()
 {
 	std::vector<Card> cards_ = this->GetCards();
@@ -138,37 +139,64 @@ void Player::Reset_cards()
 	hand_.ranking_value = Value::kTwo;
 }
 
-void Player::Bet(Table& tab_)
+void Player::Bet(Table& tab_, Player& p2, int pot_)
 {
 	int bet_;
 
 	if (tab_.GetCommunityCards().size() != 0)
 	{
-		tab_.Display_table();
+		tab_.Display_table(pot_);
 	}
 
 	this->Display_cards();
 	this->Display_money();
-	std::cout << '\n' << this->name_ << " enter your bet\n";
+
+	std::cout << '\n' << "The other player bet " << p2.GetBet() - this->GetBet();
+	std::cout << '\n' << this->name_ << " enter your bet \n";
 	std::cin >> bet_;
 
+	while ((this->GetBet() + bet_ ) < p2.GetBet())
+	{
+		std::cout << '\n' << "Your bet is too low\nThe other player bet " << p2.GetBet() - this->GetBet() << '\n';
+		std::cin >> bet_;
+	}
+
+
+
 	this->money -= bet_;
-	tab_.pot += bet_;
+	this->SetBet(bet_);
 
 	system("cls");
+	//let the time to the players to pass the pc to the opponent
 	system("pause");
 	system("cls");
 }
 
-void Player::Gain(Table& tab_)
+void Player::SetBet(int bet_)
 {
-	std::cout << this->name_ << " gains " << tab_.pot << " $" << "\n\n";
-	this->money += tab_.pot;
+	this->total_bet += bet_;
+}
+void Player::ResetBet()
+{
+	this->total_bet = 0;
 }
 
-void Player::Gain(Player& p2, Table& tab_)
+void Player::Gain(Player p2, bool draw_)
 {
-	std::cout << "Both players gains " << (tab_.pot/2) << " $" << "\n\n";
-	this->money += (tab_.pot / 2);
-	p2.money += (tab_.pot / 2);
+	int pot = (this->GetBet() + p2.GetBet());
+
+	
+	if (draw_)
+	{
+		std::cout << "Both players gains " << pot/2 << " $" << "\n\n";
+		this->money += pot/2;
+		p2.money += pot / 2;
+	}
+	else 
+	{
+		std::cout << this->name_ << " gains " << pot << " $" << "\n\n";
+		this->money += pot;
+	}
+	this->ResetBet();
+	p2.ResetBet();
 }

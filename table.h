@@ -3,13 +3,15 @@
 
 #include "card.h"
 #include "deck.h"
+#include "player.h"
 
 class Table
 {
 private:
 	std::vector<Card> community_cards_;
+
 public:
-	int pot;
+
 
 	Table();
 
@@ -23,7 +25,7 @@ public:
 
 	void FillTable(Card C1, Card C2, Card C3, Card C4, Card C5);
 
-	void Display_table();
+	void Display_table(int pot_);
 
 	void Reset_table();
 };
