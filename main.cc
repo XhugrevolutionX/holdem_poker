@@ -22,15 +22,15 @@ int main()
 	bool draw = false;
 
 	//Ask players to enter their names
-	//std::cout << "Enter the first player's name :\n";
-	//std::cin >> Player1_name;
-	//player1.SetName(Player1_name);
+	std::cout << "Enter the first player's name :\n";
+	std::cin >> Player1_name;
+	player1.SetName(Player1_name);
 
-	//system("cls");
+	system("cls");
 
-	//std::cout << "Enter the second player's name :\n";
-	//std::cin >> Player2_name;
-	//player2.SetName(Player2_name);
+	std::cout << "Enter the second player's name :\n";
+	std::cin >> Player2_name;
+	player2.SetName(Player2_name);
 
 	//enter game loop
 	do
@@ -43,6 +43,7 @@ int main()
 		player1.Reset_cards();
 		player2.Reset_cards();
 
+
 		deck.Fill();
 
 
@@ -53,6 +54,7 @@ int main()
 		player1.SetCard(c1, c2);
 		player1.SetHighCard();
 
+
 		Card c3 = deck.PickACard();
 		Card c4 = deck.PickACard();
 
@@ -60,7 +62,6 @@ int main()
 		player2.SetHighCard();
 
 
-		pot = Calculate_pot(player1, player2);
 
 		//Game begins with first bet
 		Betting_loop(player1, player2, table, pot);
@@ -77,6 +78,9 @@ int main()
 		//Last bet before the reveal
 		Betting_loop(player1, player2, table, pot);
 
+
+
+
 		//Display all of the cards
 		table.Display_table(player1.GetBet() + player2.GetBet());
 		std::cout << '\n' << Player1_name << "' ";
@@ -84,6 +88,9 @@ int main()
 		std::cout << '\n' << Player2_name << "' ";
 		player2.Display_cards();
 		std::cout << "\n\n";
+
+
+
 
 		//After all the bets and all cards are revealed check the winner and give him the pot
 		switch (Check_Win(player1, player2, table))
@@ -110,7 +117,6 @@ int main()
 			system("pause");
 			break;
 		}
-		counter++;
 	} while (player1.GetMoney() > 0 && player2.GetMoney() > 0);
 
 	if (player1.GetMoney() == 0)
@@ -123,6 +129,5 @@ int main()
 		std::cout << Player2_name << " doesn't have anymore more money" << '\n';
 		std::cout << "The Winner is " << Player1_name << '\n';
 	}
-	std::cout << counter << '\n';
 	system("pause");
 }
