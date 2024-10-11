@@ -492,10 +492,11 @@ int Calculate_pot(Player& p1, Player& p2)
 //loop that break only if both player's bet are equals
 void Betting_loop(Player& p1, Player& p2, Table& t, int& p)
 {
+	bool check;
 	do
 	{
-		p1.Bet(t, p2, p);
-		if (p1.GetBet() == p2.GetBet())
+		check = p1.Bet(t, p2, p);
+		if (p1.GetBet() == p2.GetBet() && !check)
 		{
 			continue;
 		}

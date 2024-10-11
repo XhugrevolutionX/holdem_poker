@@ -48,7 +48,7 @@ public:
 
 	void Reset_cards();
 
-	void Bet(Table& tab_, Player& p2, int pot_);
+	bool Bet(Table& tab_, Player& p2, int pot_);
 
 	void SetBet(int bet_);
 

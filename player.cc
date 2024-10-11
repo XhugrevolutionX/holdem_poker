@@ -139,9 +139,10 @@ void Player::Reset_cards()
 	hand_.ranking_value = Value::kTwo;
 }
 
-void Player::Bet(Table& tab_, Player& p2, int pot_)
+bool Player::Bet(Table& tab_, Player& p2, int pot_)
 {
 	int bet_;
+	bool check = false;
 
 	if (tab_.GetCommunityCards().size() != 0)
 	{
@@ -155,12 +156,23 @@ void Player::Bet(Table& tab_, Player& p2, int pot_)
 	std::cout << '\n' << this->name_ << " enter your bet \n";
 	std::cin >> bet_;
 
-	while ((this->GetBet() + bet_ ) < p2.GetBet())
+	while (!((this->GetBet() + bet_ ) >= p2.GetBet() && bet_ <= this->money))
 	{
-		std::cout << '\n' << "Your bet is too low\nThe other player bet " << p2.GetBet() - this->GetBet() << '\n';
+		if (!((this->GetBet() + bet_) >= p2.GetBet()))
+		{
+			std::cout << '\n' << "Your bet is too low" << '\n';
+		}
+		else
+		{
+			std::cout << '\n' << "You don't have enought money"<< '\n';
+		}
+		std::cout << "The other player bet " << p2.GetBet() - this->GetBet() << " $\n";
 		std::cin >> bet_;
 	}
-
+	if (bet_ == 0)
+	{
+		check = true;
+	}
 
 
 	this->money -= bet_;
@@ -170,6 +182,7 @@ void Player::Bet(Table& tab_, Player& p2, int pot_)
 	//let the time to the players to pass the pc to the opponent
 	system("pause");
 	system("cls");
+	return check;
 }
 
 void Player::SetBet(int bet_)

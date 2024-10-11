@@ -40,8 +40,7 @@ private:
 public:
 	Card() = default;
 
-	Card(Suits s, Value v) : suit_(s), value_(v)
-	{}
+	Card(Suits s, Value v) : suit_(s), value_(v){}
 
 	Suits GetSuit() { return suit_; }
 

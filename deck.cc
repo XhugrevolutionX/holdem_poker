@@ -9,6 +9,7 @@ void Deck::Shuffle()
 
 	std::shuffle(deck.begin(), deck.end(), g);
 }
+
 Card Deck::PickACard()
 {
 	Card card;
