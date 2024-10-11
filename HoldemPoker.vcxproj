@@ -130,7 +130,6 @@
   <ItemGroup>
     <ClCompile Include="card.cc" />
     <ClCompile Include="deck.cc" />
-    <ClCompile Include="hands.cc" />
     <ClCompile Include="logic.cc" />
     <ClCompile Include="main.cc" />
     <ClCompile Include="player.cc" />

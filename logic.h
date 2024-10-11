@@ -19,9 +19,6 @@ int Calculate_pot(Player& p1, Player& p2);
 
 void Betting_loop(Player& p1, Player& p2, Table& t, int& p);
 
-void Win(Player& p);
-
-
 
 
 #endif // LOGIC_H

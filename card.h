@@ -49,8 +49,6 @@ public:
 
 	void Display();
 
-	void Random();
-
 	bool operator==(const Card& other);
 };
 #endif // CARD_H

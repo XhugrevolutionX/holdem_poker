@@ -151,7 +151,7 @@ void Player::Bet(Table& tab_, Player& p2, int pot_)
 	this->Display_cards();
 	this->Display_money();
 
-	std::cout << '\n' << "The other player bet " << p2.GetBet() - this->GetBet();
+	std::cout << '\n' << "The other player bet " << p2.GetBet() - this->GetBet() << '$';
 	std::cout << '\n' << this->name_ << " enter your bet \n";
 	std::cin >> bet_;
 
@@ -176,6 +176,7 @@ void Player::SetBet(int bet_)
 {
 	this->total_bet += bet_;
 }
+
 void Player::ResetBet()
 {
 	this->total_bet = 0;
@@ -190,7 +191,7 @@ void Player::Gain(Player& p2, bool draw_)
 	{
 		std::cout << "Both players gains " << pot/2 << " $" << "\n\n";
 		this->money += pot/2;
-		p2.money += pot / 2;
+		p2.money += pot/2;
 	}
 	else 
 	{

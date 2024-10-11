@@ -1,24 +1,20 @@
 #include <iostream>
 #include "deck.h"
 
+
+void Deck::Shuffle()
+{
+	std::random_device rd;
+	std::mt19937 g(rd());
+
+	std::shuffle(deck.begin(), deck.end(), g);
+}
 Card Deck::PickACard()
 {
-	
 	Card card;
-	bool card_is_in_deck = false;
-	do
-	{
-		card.Random();
-
-		auto it = std::find(deck.begin(), deck.end(), card);
-
-		// If element is found found, erase it
-		if (it != deck.end()) {
-			card_is_in_deck = true;
-			deck.erase(it);
-			return card;
-		}
-	} while (!card_is_in_deck);
+	card = deck[0];
+	deck.erase(deck.begin());
+	return card;
 }
 
 void Deck::DisplayDeck()
@@ -37,9 +33,10 @@ void Deck::DisplayDeck()
 			deck_copy.emplace_back(d);
 			d.Display();
 			deck.pop_back();
+			std::cout << "\n";
 		}
 		deck = deck_copy;
-		std::cout << "\n";
+
 	}
 
 }
@@ -54,14 +51,7 @@ void Deck::Fill()
 			deck.emplace_back(s, v);
 		}
 	}
-}
-
-void Deck::Shuffle()
-{
-	std::random_device rd;
-	std::mt19937 g(rd());
-
-	std::shuffle(deck.begin(), deck.end(), g);
+	this->Shuffle();
 }
 
 void Deck::Clear()
@@ -75,12 +65,4 @@ void Deck::Clear()
 void Deck::Burn()
 {
 	deck.pop_back();
-}
-
-void Deck::DestroyDeck()
-{
-	for (Card c : deck)
-	{
-		this->Burn();
-	}
 }

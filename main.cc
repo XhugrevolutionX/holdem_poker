@@ -10,7 +10,7 @@
 
 int main()
 {
-
+	
 	std::string Player1_name = "1";
 	std::string Player2_name = "2";
 	Player player1(Player1_name);
@@ -38,7 +38,7 @@ int main()
 		system("cls");
 
 		//reset the deck, the table, and the player cards
-		deck.DestroyDeck();
+		deck.Clear();
 		table.Reset_table();
 		player1.Reset_cards();
 		player2.Reset_cards();
@@ -130,4 +130,5 @@ int main()
 		std::cout << "The Winner is " << Player1_name << '\n';
 	}
 	system("pause");
+	
 }

@@ -2,6 +2,7 @@
 #include "logic.h"
 #include <map>
 
+//function to check every hands
 bool Check_Flush(Player &p, Table &t)
 {
 	std::vector<Card> deck_p;
@@ -148,7 +149,6 @@ bool Check_as_an_Ace(Player &p, Table &t)
 	}
 	return as_an_ace;
 }
-
 
 bool Check_Royal_Flush(Player& p, Table& t)
 {
@@ -375,6 +375,7 @@ void High_card(Player& p, Table& t)
 
 
 
+//Use all the above function to check all hands
 int Check_Hands(Player &p, Table &t)
 {
 	if (Check_Royal_Flush(p,t))
@@ -441,7 +442,7 @@ int Check_Hands(Player &p, Table &t)
 	}
 }
 
-
+//Check between both player who has the best hand
 int Check_Win(Player &p1, Player &p2, Table &t)
 {
 	if (Check_Hands(p1,t) < Check_Hands(p2,t))
@@ -480,6 +481,7 @@ int Check_Win(Player &p1, Player &p2, Table &t)
 	}
 }
 
+
 int Calculate_pot(Player& p1, Player& p2)
 {
 	 int pot = p1.GetBet() + p2.GetBet();
@@ -487,6 +489,7 @@ int Calculate_pot(Player& p1, Player& p2)
 	 return pot;
 }
 
+//loop that break only if both player's bet are equals
 void Betting_loop(Player& p1, Player& p2, Table& t, int& p)
 {
 	do

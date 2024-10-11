@@ -84,24 +84,6 @@ void Card::Display()
 	std::cout << v << " of " << s;
 }
 
-void Card::Random()
-{
-
-	int s;
-	int v;
-	std::random_device rd; // obtain a random number from hardware
-	std::mt19937 gen(rd()); // seed the generator
-	std::uniform_int_distribution<> Suits_distr(0, 3); // define the range
-	std::uniform_int_distribution<> Value_distr(2, 14); // define the range
-
-	for (int n = 0; n < 40; ++n)
-	{
-		suit_ = static_cast<Suits>(Suits_distr(gen)); // generate numbers
-		value_ = static_cast<Value>(Value_distr(gen)); // generate numbers
-	}
-
-}
-
 bool Card::operator==(const Card& other)
 {
 	return (this->suit_ == other.suit_ && this->value_ == other.value_);

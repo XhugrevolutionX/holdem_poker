@@ -33,9 +33,6 @@
     <ClCompile Include="logic.cc">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hands.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="deck.h">
