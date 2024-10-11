@@ -82,7 +82,7 @@ int main()
 
 
 		//Display all of the cards
-		table.Display_table(player1.GetBet() + player2.GetBet());
+		table.Display_table(player1.GetTotalBet() + player2.GetTotalBet());
 		std::cout << '\n' << Player1_name << "' ";
 		player1.Display_cards();
 		std::cout << '\n' << Player2_name << "' ";

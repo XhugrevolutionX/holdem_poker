@@ -484,24 +484,24 @@ int Check_Win(Player &p1, Player &p2, Table &t)
 
 int Calculate_pot(Player& p1, Player& p2)
 {
-	 int pot = p1.GetBet() + p2.GetBet();
+	 int pot = p1.GetTotalBet() + p2.GetTotalBet();
 
 	 return pot;
 }
 
-//loop that break only if both player's bet are equals
+//loop that break if both player's bet are equals or if a player doesn't have anymore money and his bet is inferior or equal to the other player bet
 void Betting_loop(Player& p1, Player& p2, Table& t, int& p)
 {
-	bool check;
 	do
 	{
-		check = p1.Bet(t, p2, p);
-		if (p1.GetBet() == p2.GetBet() && !check)
+		p1.Bet(t, p2, p);
+		if ((p1.GetBet() == p2.GetBet() && p2.GetBet() != 0) || (p1.GetBet() <= p2.GetBet()) && p1.GetMoney() == 0)
 		{
 			continue;
 		}
 		p2.Bet(t, p1, p);
-		p = Calculate_pot(p1, p2);
-	} while (p1.GetBet() != p2.GetBet());
+	} while (!((p1.GetBet() == p2.GetBet()) || (p1.GetMoney() == 0 && p1.GetBet() <= p2.GetBet()) || (p2.GetMoney() == 0 && p2.GetBet() <= p1.GetBet())));
 	p = Calculate_pot(p1, p2);
+	p1.ResetBet();
+	p2.ResetBet();
 }

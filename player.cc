@@ -139,65 +139,111 @@ void Player::Reset_cards()
 	hand_.ranking_value = Value::kTwo;
 }
 
-bool Player::Bet(Table& tab_, Player& p2, int pot_)
+void Player::Bet(Table& tab_, Player& p2, int pot_)
 {
 	int bet_;
-	bool check = false;
 
 	if (tab_.GetCommunityCards().size() != 0)
 	{
 		tab_.Display_table(pot_);
 	}
 
+	//Display bets if they aren't null
+	if (p2.GetBet() != 0 && this->GetBet() != 0)
+	{
+		std::cout << "The other player bet " << p2.GetBet() << "$ \n";
+		std::cout << "Your bet " << this->GetBet() << "$ \n\n";
+	}
+	else if (p2.GetBet() != 0)
+	{
+		std::cout << "The other player bet " << p2.GetBet() << "$ \n\n";
+	}
+	else if (this->GetBet() != 0)
+	{
+		std::cout << "Your bet " << this->GetBet() << "$ \n\n";
+	}
+
+	//Display the player cards and money
 	this->Display_cards();
 	this->Display_money();
 
-	std::cout << '\n' << "The other player bet " << p2.GetBet() - this->GetBet() << '$';
-	std::cout << '\n' << this->name_ << " enter your bet \n";
-	std::cin >> bet_;
-
-	while (!((this->GetBet() + bet_ ) >= p2.GetBet() && bet_ <= this->money))
+	//Three cases when betting: 
+	//The player doesn't have anymore money -> he needs to check
+	if (this->money == 0)
 	{
-		if (!((this->GetBet() + bet_) >= p2.GetBet()))
-		{
-			std::cout << '\n' << "Your bet is too low" << '\n';
-		}
-		else
-		{
-			std::cout << '\n' << "You don't have enought money"<< '\n';
-		}
-		std::cout << "The other player bet " << p2.GetBet() - this->GetBet() << " $\n";
+		std::cout << '\n' << "You don't have anymore money \n";
 		std::cin >> bet_;
+		while (bet_ != 0)
+		{
+			std::cout << '\n' << "You need to check (bet 0) \n";
+			std::cin >> bet_;
+		}
 	}
-	if (bet_ == 0)
+	//The player doesn't have enought money to match to other player bet, but still has some money left -> he needs to bet all he has left 
+	else if (p2.GetBet() >= this->money && this->money != 0)
 	{
-		check = true;
+		std::cout << '\n' << "You need to all in \n";
+		std::cin >> bet_;
+		while (bet_ != this->money)
+		{
+			std::cout << '\n' << "Bet all you have left \n";
+			std::cin >> bet_;
+		}
+	}
+	//Neither of the above condition are met -> he can bet how much he wants between the other player bet(min) and how much money he has left(max)
+	else
+	{
+		std::cout << '\n' << this->name_ << " enter your bet \n";
+		std::cin >> bet_;
+
+		while (!(this->GetBet() + bet_ >= p2.GetBet() && bet_ <= this->money))
+		{
+			if (!(this->GetBet() + bet_ >= p2.GetBet()))
+			{
+				std::cout << '\n' << "Your bet is too low" << '\n';
+			}
+			else
+			{
+				std::cout << '\n' << "You don't have enought money" << '\n';
+			}
+			std::cin >> bet_;
+		}
 	}
 
 
 	this->money -= bet_;
 	this->SetBet(bet_);
+	this->SetTotalBet(bet_);
 
 	system("cls");
 	//let the time to the players to pass the pc to the opponent
 	system("pause");
 	system("cls");
-	return check;
 }
 
 void Player::SetBet(int bet_)
 {
+	this->bet += bet_;
+}
+
+void Player::SetTotalBet(int bet_)
+{
 	this->total_bet += bet_;
 }
 
-void Player::ResetBet()
+void Player::ResetTotalBet()
 {
 	this->total_bet = 0;
 }
 
+void Player::ResetBet()
+{
+	this->bet = 0;
+}
+
 void Player::Gain(Player& p2, bool draw_)
 {
-	int pot = (this->GetBet() + p2.GetBet());
+	int pot = (this->GetTotalBet() + p2.GetTotalBet());
 
 	
 	if (draw_)
@@ -211,6 +257,9 @@ void Player::Gain(Player& p2, bool draw_)
 		std::cout << this->name_ << " gains " << pot << " $" << "\n\n";
 		this->money += pot;
 	}
+
 	this->ResetBet();
+	this->ResetTotalBet();
 	p2.ResetBet();
+	p2.ResetTotalBet();
 }

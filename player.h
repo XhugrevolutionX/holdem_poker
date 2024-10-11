@@ -12,7 +12,8 @@ private:
 	std::string name_;
 	std::vector<Card> cards_;
 	HandValue hand_;
-	int money = 500;	
+	int money = 500;
+	int bet = 0;
 	int total_bet = 0;
 
 public:
@@ -28,8 +29,10 @@ public:
 
 	int GetMoney() { return money; }
 
-	int GetBet() { return total_bet; }
-	
+	int GetTotalBet() { return total_bet; }
+
+	int GetBet() { return bet; }
+
 	void SetCard(Card c1, Card c2);
 
 	std::vector<Card> GetCards() { return cards_; }
@@ -48,11 +51,15 @@ public:
 
 	void Reset_cards();
 
-	bool Bet(Table& tab_, Player& p2, int pot_);
+	void Bet(Table& tab_, Player& p2, int pot_);
+
+	void SetTotalBet(int bet_);
 
 	void SetBet(int bet_);
 
 	void ResetBet();
+
+	void ResetTotalBet();
 
 	void Gain(Player& p2, bool draw_);
 };
